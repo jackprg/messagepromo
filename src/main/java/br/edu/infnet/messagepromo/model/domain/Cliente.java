@@ -10,6 +10,8 @@ public class Cliente {
 	private String telefone;
 
 	private int saldoEnvio;
+	
+	private boolean ativo;
 
 	public Integer getId() {
 		return id;
@@ -49,6 +51,14 @@ public class Cliente {
 
 	public void setSaldoEnvio(int saldoEnvio) {
 		this.saldoEnvio = saldoEnvio;
+	}
+	
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override

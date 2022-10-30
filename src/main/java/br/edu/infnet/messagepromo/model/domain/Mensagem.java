@@ -1,6 +1,6 @@
 package br.edu.infnet.messagepromo.model.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Mensagem {
 	
@@ -10,7 +10,9 @@ public class Mensagem {
 	
 	private String conteudo;
 	
-	private Date dataEnvio;
+	private LocalDateTime dataEnvio;
+	
+	private float custoEnvio;
 
 	public Integer getId() {
 		return id;
@@ -36,12 +38,20 @@ public class Mensagem {
 		this.conteudo = conteudo;
 	}
 
-	public Date getDataEnvio() {
+	public LocalDateTime getDataEnvio() {
 		return dataEnvio;
 	}
 
-	public void setDataEnvio(Date dataEnvio) {
+	public void setDataEnvio(LocalDateTime dataEnvio) {
 		this.dataEnvio = dataEnvio;
+	}
+	
+	public float getCustoEnvio() {
+		return custoEnvio;
+	}
+
+	public void setCustoEnvio(float custoEnvio) {
+		this.custoEnvio = custoEnvio;
 	}
 
 	@Override
