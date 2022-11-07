@@ -1,6 +1,19 @@
 package br.edu.infnet.messagepromo.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cliente")
 public class Cliente {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String razaoSocial;
@@ -12,6 +25,10 @@ public class Cliente {
 	private int saldoEnvio;
 	
 	private boolean ativo;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuarioid")
+	private Usuario usuario;
 
 	public Integer getId() {
 		return id;
@@ -59,6 +76,14 @@ public class Cliente {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MessagepromoApplication {
+public class MessagePromoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MessagepromoApplication.class, args);
+		SpringApplication.run(MessagePromoApplication.class, args);
 	}
 
 }

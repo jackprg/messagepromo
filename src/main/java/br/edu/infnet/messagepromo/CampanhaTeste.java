@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.messagepromo.controller.CampanhaController;
@@ -15,6 +16,7 @@ import br.edu.infnet.messagepromo.model.domain.Mensagem;
 import br.edu.infnet.messagepromo.model.domain.SMS;
 import br.edu.infnet.messagepromo.model.domain.WhatsApp;
 
+@Order(2)
 @Component
 public class CampanhaTeste implements ApplicationRunner {
 

@@ -2,6 +2,7 @@ package br.edu.infnet.messagepromo.model.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.Transient;
 
 public class Campanha {
 
@@ -13,8 +14,10 @@ public class Campanha {
 
 	private String descricao;
 
+	@Transient
 	private Cliente cliente;
 
+	@Transient
 	private List<Mensagem> mensagens;
 
 	public Campanha() {

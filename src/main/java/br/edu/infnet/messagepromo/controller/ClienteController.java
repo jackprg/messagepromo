@@ -1,47 +1,50 @@
 package br.edu.infnet.messagepromo.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.messagepromo.model.domain.Cliente;
+import br.edu.infnet.messagepromo.model.domain.Usuario;
+import br.edu.infnet.messagepromo.model.service.ClienteService;
+
 
 @Controller
 public class ClienteController {
-	private static Map<Integer, Cliente> mapa = new HashMap<Integer, Cliente>();	
-	private static Integer id = 1;
-
-	public static void incluir(Cliente cliente) {
-		cliente.setId(id++);
-		mapa.put(cliente.getId(), cliente);
-		
-		System.out.println("> " + cliente);
-	}
 	
-	public static void excluir(Integer id) {
-		mapa.remove(id);
-	}
+	@Autowired
+	private ClienteService clienteService;
 	
-	public static Collection<Cliente> obterLista(){
-		return mapa.values();
-	}
-		
 	@GetMapping(value = "/cliente/lista")
 	public String telaLista(Model model) {
-		model.addAttribute("listagem", obterLista());
+		model.addAttribute("listagem", clienteService.obterLista());
 
 		return "cliente/lista";
 	}
 	
-	@GetMapping(value = "/cliente/{id}/excluir")
-	public String exclusao(@PathVariable Integer id) {
+	@GetMapping(value = "/cliente")
+	public String telaCadastro() {
+		return "cliente/cadastro";
+	}
 
-		excluir(id);
+	@PostMapping(value = "/cliente/incluir")
+	public String incluir(Cliente cliente, @SessionAttribute("user") Usuario usuario) {
+		
+		cliente.setUsuario(usuario);
+		
+		clienteService.incluir(cliente);
+		
+		return "redirect:/cliente/lista";
+	}
+	
+	@GetMapping(value = "/cliente/{id}/excluir")
+	public String excluir(@PathVariable Integer id) {
+
+		clienteService.excluir(id);
 		
 		return "redirect:/cliente/lista";
 	}
